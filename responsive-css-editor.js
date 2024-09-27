@@ -1,24 +1,19 @@
 jQuery(document).ready(function($) {
-   $('#responsive-css-editor-tabs').tabs();
+    $('#save-css-button').on('click', function() {
+        var data = {
+            action: 'save_responsive_css',
+            desktop_css: $('#desktop-css-code').val(),
+            tablet_css: $('#tablet-css-code').val(),
+            mobile_css: $('#mobile-css-code').val(),
+            _ajax_nonce: $('#responsive_css_nonce').val()
+        };
 
-   // Save button functionality
-   $('#save-css-button').click(function() {
-       var desktopCSS = $('#desktop-css-code').val();
-       var tabletCSS = $('#tablet-css-code').val();
-       var mobileCSS = $('#mobile-css-code').val();
+        $.post(ajaxurl, data, function(response) {
+            $('#save-message').html('<div class="notice notice-success is-dismissible"><p>CSS saved successfully!</p></div>');
+            $('.notice').delay(3000).fadeOut();
+        });
+    });
 
-       $.ajax({
-           url: ajaxurl,
-           type: 'POST',
-           data: {
-               action: 'save_responsive_css',
-               desktop_css: desktopCSS,
-               tablet_css: tabletCSS,
-               mobile_css: mobileCSS,
-           },
-           success: function(response) {
-               alert('CSS Saved!');
-           }
-       });
-   });
+    // Initialize jQuery UI tabs
+    $('#responsive-css-editor-tabs').tabs();
 });
