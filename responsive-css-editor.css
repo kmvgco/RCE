@@ -1,0 +1,13 @@
+#responsive-css-editor-tabs {
+   margin-top: 20px;
+}
+
+textarea {
+   width: 100%;
+   font-family: monospace;
+   font-size: 14px;
+}
+
+.button-primary {
+   margin-top: 10px;
+}
